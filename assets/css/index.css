@@ -231,6 +231,7 @@ table .span12{float:none;width:924px;margin-left:0}
 [class^="icon-"]{display:inline-block;width:14px;height:14px;vertical-align:text-top;background-image:url("../img/glyphicons-halflings.png");background-position:14px 14px;background-repeat:no-repeat;*margin-right:.3em;}
 [class^="icon-"]:last-child{*margin-left:0}
 .icon-white{background-image:url("../img/glyphicons-halflings-white.png")}
+.icon-loading{background-image:url("../img/loading.gif");width:16px;height:16px;background-position:0 0}
 .icon-glass{background-position:0 0}
 .icon-music{background-position:-24px 0}
 .icon-search{background-position:-48px 0}
@@ -640,9 +641,9 @@ a.thumbnail:hover{border-color:#08c;-webkit-box-shadow:0 1px 4px rgba(0,105,214,
 100%{background-position:40px 0}
 }.accordion{margin-bottom:}
 .accordion-group{margin-bottom:2px;border:1px solid #e5e5e5;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}
-.accordion-heading{border-bottom:0}
-.accordion-heading .accordion-toggle{display:block;padding:8px 15px}
-.accordion-inner{padding:9px 15px;border-top:1px solid #e5e5e5}
+.accordion-heading{border-bottom:1px solid #ccc;border-top:1px solid #fff;background:-webkit-gradient(linear, left top, left bottom, color-stop(0, #f0f0f0), color-stop(1, #e6e6e6));background:-webkit-linear-gradient(top, #f0f0f0 0%, #e6e6e6 100%);background:-moz-linear-gradient(top, #f0f0f0 0%, #e6e6e6 100%);background:linear-gradient(top, #f0f0f0 0%, #e6e6e6 100%)}
+.accordion-heading .accordion-toggle{display:block;padding:8px 15px;color:#666;font-weight:bold;text-shadow:#fff 0 1px 0}
+.accordion-inner{padding:1.5em 15px 0;border-top:1px solid #e5e5e5}
 .carousel{position:relative;margin-bottom:24px;line-height:1}
 .carousel-inner{overflow:hidden;width:100%;position:relative}
 .carousel .item{display:none;position:relative;-webkit-transition:.6s ease-in-out left;-moz-transition:.6s ease-in-out left;transition:.6s ease-in-out left}
@@ -668,12 +669,7 @@ a.thumbnail:hover{border-color:#08c;-webkit-box-shadow:0 1px 4px rgba(0,105,214,
 .hide{display:none}
 .show{display:block}
 .invisible{visibility:hidden}
-body{padding-top:60px;padding-bottom:40px;background:#fff url("../img/tmp/grid.png") repeat-y 50% 0}
-.sidebar-nav{padding:9px 0}
-@media only screen and (min-width: 480px){body{content:"480"}
-}@media only screen and (min-width: 600px){body{content:"600"}
-}@media only screen and (min-width: 768px){body{content:"768"}
-}@media only screen and (min-width: 992px){body{content:"992"}
-}@media only screen and (min-width: 1382px){body{content:"1382"}
-}@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5){body{content:"2x"}
-}
+body{padding-top:60px;padding-bottom:40px;background:#fff}
+h1{margin-bottom:1em;letter-spacing:-1px}
+#submit-row{padding:1em 0;text-align:center;}
+#submit-row input[type="submit"]{zoom:1}
