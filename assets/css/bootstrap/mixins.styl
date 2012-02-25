@@ -1,0 +1,377 @@
+// Mixins.less
+// Snippets of reusable CSS to develop faster and keep code readable
+// -----------------------------------------------------------------
+
+
+// UTILITY MIXINS
+// --------------------------------------------------
+
+fadein($color, $amount)
+  $r = red($color)
+  $g = green($color)
+  $b = blue($color)
+  $a = alpha($color)
+  $a += ($amount / 100)
+  rgba($r,$g,$b,$a)
+
+// Webkit-style focus
+// ------------------
+tab-focus()
+  // Default
+  outline: thin dotted
+  // Webkit
+  outline: 5px auto -webkit-focus-ring-color
+  outline-offset: -2px
+
+
+// Center-align a block level element
+// ----------------------------------
+center-block()
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+
+// IE7 inline-block
+// ----------------
+ie7-inline-block()
+  *display: inline /* IE7 inline-block hack */
+  *zoom: 1
+
+
+// IE7 likes to collapse whitespace on either side of the inline-block elements.
+// Ems because we're attempting to match the width of a space character. Left
+// version is for form buttons, which typically come after other elements, and
+// right version is for icons, which come before. Applying both is ok, but it will
+// mean that space between those elements will be .6em (~2 space characters) in IE7,
+// instead of the 1 space in other browsers.
+ie7-restore-left-whitespace()
+  *margin-left: .3em
+
+  &:first-child
+    *margin-left: 0
+  
+
+
+ie7-restore-right-whitespace()
+  *margin-right: .3em
+
+  &:last-child
+    *margin-left: 0
+  
+
+
+// Sizing shortcuts
+// -------------------------
+size($height = 5px, $width = 5px)
+  width: $width
+  height: $height
+
+square($size = 5px)
+  size($size, $size)
+
+
+// Placeholder text
+// -------------------------
+placeholder($color = placeholderText)
+  :-moz-placeholder
+    color: $color
+  
+  ::-webkit-input-placeholder
+    color: $color
+  
+
+
+
+
+// FONTS
+// --------------------------------------------------
+
+serif = Georgia, "Times New Roman", Times, serif
+sans = 'Helvetica Neue', Arial, Helvetica, sans-serif
+mono = Consolas, 'Lucida Console', Monaco, Courier New, monospace
+lucida = 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif 
+
+shorthand($size = baseFontSize, $weight = normal, $lineHeight = baseLineHeight)
+  font-size: $size
+  font-weight: $weight
+  line-height: $lineHeight
+
+default-serif()
+  shorthand()
+  font-family serif
+
+default-sans()
+  shorthand()
+  font-family sans
+
+default-mono()
+  shorthand()
+  font-family mono
+
+// GRID SYSTEM
+// --------------------------------------------------
+
+// Site container
+// -------------------------
+container-fixed()
+  width: gridRowWidth
+  margin-left: auto
+  margin-right: auto
+  clearfix()
+
+
+// Le grid system
+// -------------------------
+
+fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, fixedColumns)
+  width: (gridColumnWidth * fixedColumns) + (gridGutterWidth * (fixedColumns - 1))
+  
+
+fixedOffset(gridColumnWidth, gridGutterWidth, fixedColumns)
+  margin-left: (gridColumnWidth * fixedColumns) + (gridGutterWidth * (fixedColumns - 1)) + (gridGutterWidth * 2)
+
+fixedGridColumn(gridGutterWidth)
+  float: left
+  margin-left: gridGutterWidth
+
+// Take these values and mixins, and make 'em do their thang
+fixedGenerate(gridfixedColumns, gridColumnWidth, gridGutterWidth)
+  // Row surrounds the fixedColumns
+  .row
+    margin-left: gridGutterWidth * -1
+    clearfix()
+  
+  // Find all .span# classes within .row and give them the necessary properties for grid fixedColumns (supported by all browsers back to IE7, thanks dhg)
+  [class*="span"]
+    fixedGridColumn(gridGutterWidth)
+  
+  // Default fixedColumns
+  .span1
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 1) 
+  .span2
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 2) 
+  .span3
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 3) 
+  .span4
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 4) 
+  .span5
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 5) 
+  .span6
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 6) 
+  .span7
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 7) 
+  .span8
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 8) 
+  .span9
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 9) 
+  .span10
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 10) 
+  .span11
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 11) 
+  .span12, .container
+    fixedColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 12) 
+
+  // Offset column options
+  .offset1
+    fixedOffset(gridColumnWidth, gridGutterWidth, 1)
+  .offset2
+    fixedOffset(gridColumnWidth, gridGutterWidth, 2) 
+  .offset3
+    fixedOffset(gridColumnWidth, gridGutterWidth, 3) 
+  .offset4
+    fixedOffset(gridColumnWidth, gridGutterWidth, 4) 
+  .offset5
+    fixedOffset(gridColumnWidth, gridGutterWidth, 5) 
+  .offset6
+    fixedOffset(gridColumnWidth, gridGutterWidth, 6) 
+  .offset7
+    fixedOffset(gridColumnWidth, gridGutterWidth, 7) 
+  .offset8
+    fixedOffset(gridColumnWidth, gridGutterWidth, 8) 
+  .offset9
+    fixedOffset(gridColumnWidth, gridGutterWidth, 9) 
+  .offset10
+    fixedOffset(gridColumnWidth, gridGutterWidth, 10) 
+  .offset11
+    fixedOffset(gridColumnWidth, gridGutterWidth, 11) 
+
+
+
+// Fluid grid system
+// -------------------------
+
+fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, fluidColumns)
+  width: 1% * (fluidGridColumnWidth * fluidColumns) + (fluidGridGutterWidth * (fluidColumns - 1))
+  
+fluidGridColumn(fluidGridGutterWidth)
+  float: left
+  margin-left: fluidGridGutterWidth
+
+// Take these values and mixins, and make 'em do their thang
+fluidGenerate(gridfluidColumns, fluidGridColumnWidth, fluidGridGutterWidth)      
+  // Row surrounds the fluidColumns
+  .row-fluid
+    width: 100%
+    clearfix()
+
+    // Find all .span# classes within .row and give them the necessary properties for grid fluidColumns (supported by all browsers back to IE7, thanks dhg)
+    > [class*="span"]
+      fluidGridColumn(fluidGridGutterWidth)
+    
+    > [class*="span"]:first-child
+      margin-left: 0
+    
+    // Default fluidColumns
+    .span1     
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 1) 
+    .span2 
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 2) 
+    .span3
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 3) 
+    .span4
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 4) 
+    .span5
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 5) 
+    .span6
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 6) 
+    .span7
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 7) 
+    .span8
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 8) 
+    .span9
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 9) 
+    .span10
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 10) 
+    .span11
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 11) 
+    .span12
+      fluidColumns(fluidGridGutterWidth, fluidGridColumnWidth, 12) 
+    
+  
+
+
+
+
+// Input grid system
+// -------------------------
+
+inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, columns)
+  width: ((gridColumnWidth) * columns) + (gridGutterWidth * (columns - 1)) - 10
+
+inputGenerate(gridColumns, gridColumnWidth, gridGutterWidth)
+  input,
+  textarea,
+  .uneditable-input
+    &.span1     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 1) 
+    &.span2     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 2) 
+    &.span3     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 3) 
+    &.span4     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 4) 
+    &.span5     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 5) 
+    &.span6     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 6) 
+    &.span7     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 7)
+    &.span8     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 8) 
+    &.span9     
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 9) 
+    &.span10    
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 10) 
+    &.span11    
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 11) 
+    &.span12    
+      inputColumns(gridGutterWidth, gridColumnWidth, gridRowWidth, 12) 
+    
+  
+
+
+
+
+// BACKGROUNDS
+// --------------------------------------------------
+
+// Add an alphatransparency value to any background or border color (via Elyse Holladay)
+
+translucent-background(color = white, alpha = 1)
+  background-color: hsla(hue(color), saturation(color), lightness(color), alpha)
+  
+translucent-border(color = white, alpha = 1)
+  border-color: hsla(hue(color), saturation(color), lightness(color), alpha)
+  background-clip padding-box
+  
+// Gradient Bar Colors for buttons and alerts
+gradientBar(primaryColor, secondaryColor)
+  background linear-gradient(top, primaryColor, secondaryColor)
+  border-color: secondaryColor secondaryColor darken(secondaryColor, 15%)
+  border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) fadein(rgba(0,0,0,.1), 15%)
+
+// Reset filters for IE
+reset-filter()
+  filter: "progid:DXImageTransform.Microsoft.gradient(enabled = false)"
+
+
+
+// Mixin for generating button backgrounds
+// ---------------------------------------
+
+buttonBackground(startColor, endColor)
+  gradientBar(startColor, endColor)
+  reset-filter()
+
+  // in these cases the gradient won't cover the background, so we override
+  &:hover, &:active, &.active, &.disabled, &[disabled]
+    background-color: endColor
+  
+
+  // IE 7 + 8 can't handle box-shadow to show active, so we darken a bit ourselves
+  &:active,
+  &.active
+    background-color: darken(endColor, 10%) e("\9")
+  
+
+
+
+// COMPONENT MIXINS
+// --------------------------------------------------
+
+// POPOVER ARROWS
+// -------------------------
+// For tipsies and popovers
+
+arrow-top(arrowWidth = 5px)
+  bottom: 0
+  left: 50%
+  margin-left: -arrowWidth
+  border-left: arrowWidth solid transparent
+  border-right: arrowWidth solid transparent
+  border-top: arrowWidth solid black
+
+arrow-left(arrowWidth = 5px)
+  top: 50%
+  right: 0
+  margin-top: -arrowWidth
+  border-top: arrowWidth solid transparent
+  border-bottom: arrowWidth solid transparent
+  border-left: arrowWidth solid black
+
+arrow-bottom( arrowWidth = 5px)
+  top: 0
+  left: 50%
+  margin-left: -arrowWidth
+  border-left: arrowWidth solid transparent
+  border-right: arrowWidth solid transparent
+  border-bottom: arrowWidth solid black
+
+arrow-right(arrowWidth = 5px)
+  top: 50%
+  left: 0
+  margin-top: -arrowWidth
+  border-top: arrowWidth solid transparent
+  border-bottom: arrowWidth solid transparent
+  border-right: arrowWidth solid black

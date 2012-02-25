@@ -1,0 +1,43 @@
+span.amp
+  font-family Baskerville,Palatino,"Book Antiqua",serif
+  font-style italic
+
+.error::-webkit-input-placeholder
+  color rgb(255,0,0)
+
+.error:-moz-placeholder
+  color rgb(255,0,0)
+
+ir()
+  display block
+  text-indent -999em
+  overflow hidden
+  background-repeat no-repeat
+  text-align left
+  direction ltr
+
+invisible()
+  visibility hidden
+
+hidden()
+  display none
+  invisible()
+
+visuallyhidden()
+  position absolute
+  clip rect(0 0 0 0)
+  overflow hidden
+  margin -1px
+  padding 0
+  height 1px
+  width 1px
+  border 0
+
+visuallyhiddenfocusable()
+  &:active, &:focus
+    position static
+    clip auto
+    overflow visible
+    height auto
+    margin 0
+    width auto
