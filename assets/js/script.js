@@ -10,3 +10,10 @@ $("#phases").cycle({
   timeout: 0,
   next: ".btn-bgcheck"
 });
+
+
+$("#credit-score").keypress(function () {
+  if ($("#credit-score").val().length > 0) {
+    $("#schedule-interview").removeClass("disabled").addClass("btn-primary")
+  }
+});
