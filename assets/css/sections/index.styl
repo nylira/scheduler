@@ -2,14 +2,27 @@ body
   padding-top: 60px
   padding-bottom: 40px
   bg #fff
+  background linear-gradient(top, m240, #fff) no-repeat
 
 h1
   mb 1em
   ls -1px
+  c #333
+  text-shadow w90 0 1px 0, b15 0 0 1em
 
-#submit-row
-  p 1em 0
-  text-align center
+p.help-block
+  c #666
+  text-shadow #fff 0 1px 0
+  
+form
+  label.control-label
+    fw bold
+    text-shadow #fff 0 1px 0
+  input
+    box-shadow #fff 0 1px 0, inset b12 1px 1px 3px
+  #submit-row
+    p 1em 0
+    text-align center
 
-  input[type="submit"]
-    zoom 1
+    input[type="submit"]
+      zoom 1
