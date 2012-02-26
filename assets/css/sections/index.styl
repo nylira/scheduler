@@ -3,12 +3,13 @@ body
   padding-bottom: 40px
   bg #fff
   background linear-gradient(top, m240, #fff) no-repeat
+  bg hsl(200,50,10)
 
 h1
   mb 1em
   ls -1px
-  c #333
-  text-shadow w90 0 1px 0, b15 0 0 1em
+  c hsl(200,100,30)
+  text-shadow b15 0 0 1em
 
 p.help-block
   c #666
@@ -20,6 +21,8 @@ form
     text-shadow #fff 0 1px 0
   input
     box-shadow #fff 0 1px 0, inset b12 1px 1px 3px
+    &[type=text]
+      b 1px solid hsl(200,30,50)
   #submit-row
     p 1em 0
     text-align center

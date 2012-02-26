@@ -60,12 +60,13 @@
 
 div.AnyTime-win
 {
-  background-color:#F0F0F1;
-  border:3px solid #C0C0C0;
+  background-color:#e0e7eb;
+  border:3px solid #e0e7eb;
   font:normal normal normal xx-small/normal sans-serif;
   padding-bottom:0.2em;
   -moz-border-radius:6px;
   -webkit-border-radius:6px;
+  -webkit-box-shadow: #000 0 0 2em;
 }
 
 /*
@@ -102,15 +103,14 @@ div.AnyTime-win
 
 .AnyTime-pkr .AnyTime-hdr
 {
-  background-color:#D0D0D1;
-  color:#606062;
+  color:#105070;
   font-family:Arial,Helvetica,sans-serif;
   font-size:medium;
   font-weight:normal;
+  text-align: center;
   height:1em;
   margin:0;
   padding:0 0 0.4em 0;
-  text-align:center;
   -moz-border-radius:2px;
   -webkit-border-radius:2px;
 }

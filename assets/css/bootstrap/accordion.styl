@@ -10,18 +10,18 @@
 // Group == heading + body
 .accordion-group
   margin-bottom: 2px
-  border: 1px solid #e5e5e5
-  border-radius: 4px
+  border-radius: 5px
   box-shadow b15 0 0 2em
   border-radius 5px
   bt 1px solid m120
   overflow hidden
 
 .accordion-heading
-  border-bottom: 1px solid m60
+  bb 1px solid hsl(200,50,30)
   bt 1px solid w50
   background linear-gradient(top, m130, m90 50%, m60 50%, m80)
-  box-shadow inset b15 0 0 10px
+  background linear-gradient(top, hsl(200,20,90), hsl(200,20,85) 50%, hsl(200,20,80) 50%, hsl(200,20,75))
+  box-shadow inset w50 0 0 2px
 
 .accordion-heading .accordion-toggle
   display: block
@@ -29,16 +29,15 @@
   color #666
   fw bold
   s 110%
-  color #fff
-  text-shadow b90 0 0 5px
+  c hsl(200,75,25)
+  text-shadow w75 0 1px 0
 
 // Inner needs the styles because you can't animate properly with any styles on the element
 .accordion-inner
   padding: 1.5em 15px 0
-  b 1px solid #ccc
-  bt 1px solid #fff
-  bb 1px solid #aaa
+  bt 1px solid hsl(200,20,97)
   bg #fff
   background linear-gradient(top, m235, m230)
-  border-radius 0 0 5px 5px
+  background linear-gradient(top, hsl(200,20,90), hsl(200,20,85))
+  border-radius 0 0 3px 3px
   clearfix()
